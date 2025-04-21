@@ -11,6 +11,6 @@ Currently, two official plugins are available:
 
 Practical Test
 
-npm install
-npm run dev
-npm run test
+- npm install
+- npm run dev
+- npm run test
