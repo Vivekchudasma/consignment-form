@@ -1,18 +1,22 @@
-export const fetchLocations = async () => {
-  return {
-    data: {
-      locations: [
-        "Perth",
-        "Sydney",
-        "Melbourne",
-        "Brisbane",
-        "Adelaide",
-        "Darwin",
-        "Hobart",
-        "Canberra",
-      ],
-    },
-  };
+export const fetchLocations = () => {
+  return new Promise<{ data: { locations: string[] } }>((resolve) => {
+    setTimeout(() => {
+      resolve({
+        data: {
+          locations: [
+            "Perth",
+            "Sydney",
+            "Melbourne",
+            "Brisbane",
+            "Adelaide",
+            "Darwin",
+            "Hobart",
+            "Canberra",
+          ],
+        },
+      });
+    }, 1000);
+  });
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
