@@ -21,7 +21,7 @@ const ConsignmentForm: React.FC = () => {
     reset,
     formState: { errors, isValid },
   } = useForm<ConsignmentFormData>({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: { units: "centimetres" },
   });
   const [locations, setLocations] = useState<string[]>([]);
@@ -36,7 +36,7 @@ const ConsignmentForm: React.FC = () => {
     setLoadingLocations(true);
     fetchLocations()
       .then((res) => setLocations(res.data.locations))
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoadingLocations(false));
   }, []);
 
@@ -73,6 +73,7 @@ const ConsignmentForm: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [submitStatus]);
+  console.log(locations, "check")
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
@@ -176,9 +177,8 @@ const ConsignmentForm: React.FC = () => {
                   min: { value: 1, message: "Minimum is 1" },
                   max: {
                     value: units === "centimetres" ? 1200 : 12000,
-                    message: `Maximum is ${
-                      units === "centimetres" ? 1200 : 12000
-                    }`,
+                    message: `Maximum is ${units === "centimetres" ? 1200 : 12000
+                      }`,
                   },
                 }}
                 render={({ field: f }) => (
@@ -215,7 +215,7 @@ const ConsignmentForm: React.FC = () => {
 
         <button
           type="submit"
-          disabled={!isValid || submitStatus === "loading"}
+          disabled={submitStatus === "loading"}
           className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 disabled:opacity-50"
         >
           {submitStatus === "loading" ? "Submitting..." : "Submit"}
